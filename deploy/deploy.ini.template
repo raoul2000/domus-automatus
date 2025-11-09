@@ -1,0 +1,58 @@
+[my site] ; There may be more than one section
+; remote FTP server
+remote = _REMOTE_
+
+; FTP passive mode
+passiveMode = yes
+
+; local path (optional)
+local = ..
+
+; run in test-mode? (can be enabled by option -t or --test too)
+test = no
+
+; files and directories to ignore
+ignore = "
+	.git*
+	*.log
+	/doc
+	/vendor
+	/explorer/test
+	/deploy/*.ini
+	/deploy/*.log
+	/deploy/*.conf
+	/deploy/*.example
+	/deploy/*.template
+	/deploy/create.php
+	composer.*
+	/deployment.*
+	/log
+	temp/*
+	.htaccess
+	/explorer/test
+	/explorer/lib/.htpasswd
+	/service/sms/*.dta
+	/service/sms/*.log
+	/service/sms/*.md
+	/service/sms/test
+"
+; is allowed to delete remote files? (defaults to yes)
+allowDelete = yes
+
+; jobs to run before file upload
+; before[] = http://example.com/deployment.php?before
+
+; jobs to run immediately after file upload
+; afterUpload[] = http://example.com/deployment.php?afterUpload
+
+; jobs to run after everything is done
+after[] = _AFTER_
+
+; directories to purge after file upload
+purge[] = temp/cache
+
+; files to preprocess (defaults to *.js *.css)
+; preprocess = no
+
+; file which contains hashes of all uploaded files (defaults to .htdeployment)
+deploymentFile = .deployment

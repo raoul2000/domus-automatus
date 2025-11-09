@@ -1,0 +1,6 @@
+<?php
+
+$env = [
+  '_REMOTE_' => "ftp://username:password@host/folder",
+  '_AFTER_' => "http://your.domain.com/site/test-deploy/deploy/post-install.php"
+];
