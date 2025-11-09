@@ -1,0 +1,29 @@
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@authKey = abcd
+
+
+### missing authKey
+GET http://{{host}}/src/web/index.php
+
+### invalid authKey
+
+GET http://{{host}}/src/web/index.php?authKey=INVALID
+
+### missing action
+
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}
+
+### missing action
+
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}
+
+### ping action
+
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=ping
+
+### send-sms action
+
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+
