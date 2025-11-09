@@ -4,6 +4,7 @@ $config = [
     "authorizationKey" => 'abcd',
     "param1" => true,
     "timezone" => 'Europe/Paris',
+    "logDir" => __DIR__ . '/../log',  // will be created if needed
 
     "action" => [
         
