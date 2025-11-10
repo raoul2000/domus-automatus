@@ -5,11 +5,12 @@
  */
 function runAction($config)
 {
-    
+
     if (
-        array_key_exists('action', $config) && 
-        array_key_exists('send-sms', $config['action']) && 
-        array_key_exists('destinations', $config['action']['send-sms'])
+        array_key_exists('action', $config) &&
+        array_key_exists('send-sms', $config['action']) &&
+        array_key_exists('destinations', $config['action']['send-sms']) &&
+        is_array($config['action']['send-sms']['destinations'])
     ) {
         require("../lib/FreemobileNotificationSender.php");
 
@@ -23,17 +24,18 @@ function runAction($config)
         foreach ($destinations as $key => $dest) {
             try {
                 $fms = new FreemobileNotificationSender($dest['sms-userid'], $dest['sms-apikey']);
-                //$fms->sendMessage("Message de test");
-                echo "[send-sms] ".$date." SMS OK to " . $dest['sms-userid'] . "<br/>";
-                echo "message : <pre>".$message."</pre>";
+                if (!isset($_REQUEST['silent'])) {
+                    $fms->sendMessage("Message de test");
+                    Logger::info("send-sms : SMS sent to [" . $dest['sms-userid'] . "] message = [" . $message . "]");
+                } else {
+                    Logger::info("send-sms : SILENT mode (no SMS sent) - sms-userid = [" . $dest['sms-userid'] . "] message = [" . $message . "]");
+                }
             } catch (Exception $e) {
-                $errMsg = "erreur for userid = " . $dest['sms-userid'] . " : " . $e->getMessage() . " code = " . $e->getCode();
-                echo "SMS ERROR = $errMsg<br/>";
-                file_put_contents("sms-error.log", $errMsg . "\n", FILE_APPEND | LOCK_EX );
+                Logger::error("send-sms : " . $errMsg, $_SERVER);
             }
         }
     } else {
-        echo "missing config";
+        Logger::error("send-sms - invalid or missing configuration", $_SERVER);
         return 500;
     }
 }
