@@ -31,6 +31,9 @@ switch ($action) {
     case 'send-sms':
         require('../action/send-sms.php');
         break;
+    case 'log':
+        require('../action/log.php');
+        break;
 
     default:
         Logger::error("missing or invalid action", $_SERVER);
@@ -40,5 +43,4 @@ switch ($action) {
 
 // HTTP status code /////////////////////////////////////////////////////////////////////
 
-$returnCode = runAction($config) ?? 200;
-http_response_code($returnCode);
+runAction($config);

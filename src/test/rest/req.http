@@ -23,11 +23,15 @@ GET http://{{host}}/src/web/index.php?authKey={{authKey}}
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=ping
 
-### send-sms action (slien mode ON)
+### send-sms action (silent mode ON)
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms&silent=true
 
-### send-sms action (slien mode OFF)
+### send-sms action (silent mode OFF)
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+
+### log action
+
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=log
 

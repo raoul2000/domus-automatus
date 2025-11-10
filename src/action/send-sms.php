@@ -16,7 +16,7 @@ function runAction($config)
 
         // load SMS configuration
         $destinations = $config['action']['send-sms']['destinations'];
-        $message = array_key_exists('msg', $_REQUEST) ? $_REQUEST['msg'] : "Notification envoyé";
+        $message = array_key_exists('msg', $_REQUEST) ? $_REQUEST['msg'] : "Notification HA";
 
         $date = date('m/d/Y h:i:s a', time());
 
@@ -36,6 +36,6 @@ function runAction($config)
         }
     } else {
         Logger::error("send-sms - invalid or missing configuration", $_SERVER);
-        return 500;
+        http_response_code(500);
     }
 }

@@ -100,12 +100,12 @@ class Logger
     public static function info($message, array $context = [])
     {
         // grab the line and file path where the log method has been executed ( for troubleshooting )
-        $bt = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
+        //$bt = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
 
         //execute the writeLog method with passing the arguments
         static::writeLog([
             'message' => $message,
-            'bt' => $bt,
+            //'bt' => $bt,
             'severity' => 'INFO',
             'context' => $context
         ]);
@@ -170,12 +170,12 @@ class Logger
     public static function warning($message, array $context = [])
     {
         // grab the line and file path where the log method has been executed ( for troubleshooting )
-        $bt = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
+        //$bt = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
 
         //execute the writeLog method with passing the arguments
         static::writeLog([
             'message' => $message,
-            'bt' => $bt,
+            //'bt' => $bt,
             'severity' => 'WARNING',
             'context' => $context
         ]);
@@ -193,12 +193,12 @@ class Logger
     public static function error($message, array $context = [])
     {
         // grab the line and file path where the log method has been executed ( for troubleshooting )
-        $bt = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
+        //$bt = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
 
         //execute the writeLog method with passing the arguments
         static::writeLog([
             'message' => $message,
-            'bt' => $bt,
+            //'bt' => $bt,
             'severity' => 'ERROR',
             'context' => $context
         ]);
