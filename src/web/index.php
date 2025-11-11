@@ -15,7 +15,7 @@ Logger::$log_dir = $config['logDir'];
 // Access Control ///////////////////////////////////////////////////////////////////////
 
 $action = array_key_exists('action', $_REQUEST) ? $_REQUEST['action'] : "";
-$authKey = array_key_exists('authKey', $_REQUEST) ? $_REQUEST['authKey'] : "";
+$authKey = array_key_exists('HTTP_X_AUTHKEY', $_SERVER) ? $_SERVER['HTTP_X_AUTHKEY'] : "";
 
 if ($authKey !=  $config['authorizationKey']) {
     Logger::error("unauthorized access", $_SERVER);
@@ -34,7 +34,6 @@ switch ($action) {
     case 'log':
         require('../action/log.php');
         break;
-
     default:
         Logger::error("missing or invalid action", $_SERVER);
         return http_response_code(500);

@@ -10,28 +10,39 @@ GET http://{{host}}/src/web/index.php
 ### invalid authKey
 
 GET http://{{host}}/src/web/index.php?authKey=INVALID
+x-authKey: INVALID
 
 ### missing action
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}
+x-authKey: {{authKey}}
 
-### missing action
-
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}
 
 ### ping action
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=ping
+x-authKey: {{authKey}}
 
 ### send-sms action (silent mode ON)
 
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms&silent=true
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+    &silent=true
+    &msg=the%20message
+x-authKey: {{authKey}}
+
+### send-sms action (silent mode ON) - default message
+
+GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+    &silent=true
+x-authKey: {{authKey}}
 
 ### send-sms action (silent mode OFF)
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+x-authKey: {{authKey}}
 
 ### log action
 
 GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=log
+x-authKey: {{authKey}}
 
