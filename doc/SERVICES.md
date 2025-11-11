@@ -3,16 +3,18 @@
 ## Ping
 
 - method : GET
+- headers:
+    - `X-AuthKey` : the configured authentication key
 - query param :
   - `action=ping`
-
 
 ## Send SMS
 
 - method : GET
+- headers:
+    - `X-AuthKey` : the configured authentication key
 - query param :
-  - `authKey=XXXXXXXX`
   - `action=send-sms`
-  - `slien=true` : Optional - does not send SMS, just check input args and log
+  - `slient=true` : Optional - does not send SMS, just check input args and log
 
 
