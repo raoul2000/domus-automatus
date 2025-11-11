@@ -5,10 +5,9 @@
  */
 function runAction($config)
 {
-
     if (
-        array_key_exists('action', $config) &&
-        array_key_exists('send-sms', $config['action']) &&
+        array_key_exists('action',       $config                      ) &&
+        array_key_exists('send-sms',     $config['action']            ) &&
         array_key_exists('destinations', $config['action']['send-sms']) &&
         is_array($config['action']['send-sms']['destinations'])
     ) {
@@ -17,8 +16,6 @@ function runAction($config)
         // load SMS configuration
         $destinations = $config['action']['send-sms']['destinations'];
         $message = array_key_exists('msg', $_REQUEST) ? $_REQUEST['msg'] : "Notification HA";
-
-        $date = date('m/d/Y h:i:s a', time());
 
         // send SMS for each configured destinations
         foreach ($destinations as $key => $dest) {
