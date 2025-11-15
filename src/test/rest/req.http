@@ -1,48 +1,49 @@
 @hostname = localhost
 @port = 8080
 @host = {{hostname}}:{{port}}
+@url = http://{{host}}
 @authKey = abcd
 
 
-### missing authKey
-GET http://{{host}}/src/web/index.php
+### missing authKey : => HTTP/1.1 401 Unauthorized
+GET {{url}}/index.php
 
-### invalid authKey
-
-GET http://{{host}}/src/web/index.php?authKey=INVALID
+### invalid authKey  : => HTTP/1.1 401 Unauthorized
+GET {{url}}/index.php
 x-authKey: INVALID
 
-### missing action
-
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}
+### missing action : HTTP/1.1 500 Internal Server Error
+GET {{url}}/index.php
 x-authKey: {{authKey}}
 
-
-### ping action
-
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=ping
+### ping action => 200 OK 'pong'
+GET {{url}}/index.php?action=ping
 x-authKey: {{authKey}}
 
-### send-sms action (silent mode ON)
-
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+### send-sms action (silent mode ON) => HTTP/1.1 200 OK
+GET {{url}}/index.php?action=send-sms
     &silent=true
     &msg=the%20message
 x-authKey: {{authKey}}
 
-### send-sms action (silent mode ON) - default message
-
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+### send-sms action (silent mode ON) - default message => HTTP/1.1 200 OK
+GET {{url}}/index.php?action=send-sms
     &silent=true
 x-authKey: {{authKey}}
 
-### send-sms action (silent mode OFF)
+### send-sms action (silent mode ON) - custom message => HTTP/1.1 200 OK
+GET {{url}}/index.php?action=send-sms
+    &silent=true
+    &msg=hello%20world
+x-authKey: {{authKey}}
 
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=send-sms
+### send-sms action (silent mode OFF)
+GET {{url}}/index.php?action=send-sms
+    &msg=hello%20world
 x-authKey: {{authKey}}
 
 ### log action
 
-GET http://{{host}}/src/web/index.php?authKey={{authKey}}&action=log
+GET {{url}}/index.php?action=log
 x-authKey: {{authKey}}
 

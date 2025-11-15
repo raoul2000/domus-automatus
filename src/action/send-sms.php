@@ -22,13 +22,14 @@ function runAction($config)
             try {
                 $fms = new FreemobileNotificationSender($dest['sms-userid'], $dest['sms-apikey']);
                 if (!isset($_REQUEST['silent'])) {
-                    $fms->sendMessage("Message de test");
+                    $fms->sendMessage($message);
                     Logger::info("send-sms : SMS sent to [" . $dest['sms-userid'] . "] message = [" . $message . "]");
                 } else {
                     Logger::info("send-sms : SILENT mode (no SMS sent) - sms-userid = [" . $dest['sms-userid'] . "] message = [" . $message . "]");
                 }
             } catch (Exception $e) {
-                Logger::error("send-sms : " . $errMsg, $_SERVER);
+                Logger::error("send-sms : " . $e);
+                Logger::error("send-sms : ", $_SERVER);
             }
         }
     } else {
