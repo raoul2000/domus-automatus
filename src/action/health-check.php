@@ -7,6 +7,8 @@ require_once("../lib/ftp-client/FtpWrapper.php");
 
 function runAction($config)
 {
+    Logger::info("health-check : request");
+    
     $healtCheck = array(
         'ftpConnection' => true,
         'ts' => time()

@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Send an SMS to all configured destinations
+ * Send an SMS to all configured destinations.
+ * 
+ * The SMS message is passed through the `msg` query param of the Request.
  */
 function runAction($config)
 {
