@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * Returns information about the App
+ */
 function runAction($config)
 {
     header('Content-Type: application/json');

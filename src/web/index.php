@@ -46,6 +46,10 @@ switch ($action) {
         checkAuthenticationKey($config);
         require('../action/send-sms.php');
         break;
+    case 'health-check':
+        checkAuthenticationKey($config);
+        require('../action/health-check.php');
+        break;
     case 'log':
         require('../action/log.php');
         break;

@@ -51,3 +51,8 @@ x-authKey: {{authKey}}
 GET {{url}}/index.php?action=log
 x-authKey: {{authKey}}
 
+### health check
+
+GET {{url}}/index.php?action=health-check
+x-authKey: {{authKey}}
+

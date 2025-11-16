@@ -6,6 +6,11 @@ $config = [
     "timezone" => 'Europe/Paris',
     "logDir" => __DIR__ . '/../log',  // will be created if needed
 
+    "ftp" => [
+        "host" => 'host_or_ip',
+        "username" => "bob",
+        "password" => "secretpass",
+    ],
     "action" => [
         
         ///////////////////////////////////////////////////////////////////////////////
