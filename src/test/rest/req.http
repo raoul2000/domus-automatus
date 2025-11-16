@@ -5,10 +5,10 @@
 @authKey = abcd
 
 
-### missing authKey : => HTTP/1.1 401 Unauthorized
+### missing authKey and action : => HTTP/1.1 401 Unauthorized
 GET {{url}}/index.php
 
-### invalid authKey  : => HTTP/1.1 401 Unauthorized
+### missing action invalid authKey  : => HTTP/1.1 401 Unauthorized
 GET {{url}}/index.php
 x-authKey: INVALID
 
@@ -16,9 +16,13 @@ x-authKey: INVALID
 GET {{url}}/index.php
 x-authKey: {{authKey}}
 
+### info action => 200 OK JSON
+GET {{url}}/index.php?action=info
+
+
 ### ping action => 200 OK 'pong'
 GET {{url}}/index.php?action=ping
-x-authKey: {{authKey}}
+
 
 ### send-sms action (silent mode ON) => HTTP/1.1 200 OK
 GET {{url}}/index.php?action=send-sms

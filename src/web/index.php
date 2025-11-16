@@ -49,6 +49,9 @@ switch ($action) {
     case 'log':
         require('../action/log.php');
         break;
+    case 'info':
+        require('../action/info.php');
+        break;
     default:
         Logger::error("missing or invalid action", $_SERVER);
         return http_response_code(500);
