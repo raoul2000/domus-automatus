@@ -8,22 +8,29 @@ require_once("../lib/ftp-client/FtpWrapper.php");
 function runAction($config)
 {
     Logger::info("health-check : request");
-    
+
     $healtCheck = array(
         'ftpConnection' => true,
+        'ftp' => [
+            'host' => $config['ftp']['host'],
+            'username' => $config['ftp']['username'],
+            'rootDir' => $config['ftp']['rootDir']
+        ],
         'ts' => time()
     );
 
     try {
-        
+
         $host = $config['ftp']['host'];
         $username = $config['ftp']['username'];
         $password = $config['ftp']['password'];
+        
         $ftp = new \FtpClient\FtpClient();
         $ftp->connect($host);
-        $ftp->login($username, $password); 
+        $ftp->login($username, $password);
 
-        //print_r( $ftp->scanDir('domoticus'));
+        $ftp->scanDir($config['ftp']['rootDir']);
+
     } catch (\Throwable $th) {
         $healtCheck['ftpConnection'] = false;
         $healtCheck['ftpConnectionError'] = $th->getMessage();

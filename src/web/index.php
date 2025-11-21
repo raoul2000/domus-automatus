@@ -56,6 +56,9 @@ switch ($action) {
     case 'info':
         require('../action/info.php');
         break;
+    case 'ls':
+        require('../action/ftp-ls.php');
+        break;
     default:
         Logger::error("missing or invalid action", $_SERVER);
         return http_response_code(500);

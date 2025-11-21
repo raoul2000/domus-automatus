@@ -56,3 +56,21 @@ x-authKey: {{authKey}}
 GET {{url}}/index.php?action=health-check
 x-authKey: {{authKey}}
 
+### FTP: ls - default
+GET {{url}}/index.php?action=ls
+x-authKey: {{authKey}}
+
+### FTP: ls - folder exists
+
+GET {{url}}/index.php?action=ls&dir=cam1/2025/11/21/
+x-authKey: {{authKey}}
+
+### FTP: ls - folder Not found
+
+GET {{url}}/index.php?action=ls&dir=NOT_FOUND
+x-authKey: {{authKey}}
+### FTP: ls - folder Not found
+
+GET {{url}}/index.php?action=ls&dir=../..
+x-authKey: {{authKey}}
+

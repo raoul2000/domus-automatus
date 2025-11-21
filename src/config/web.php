@@ -10,6 +10,7 @@ $config = [
         "host" => 'host_or_ip',
         "username" => "bob",
         "password" => "secretpass",
+        "rootDir" => "domoticus"
     ],
     "action" => [
         
