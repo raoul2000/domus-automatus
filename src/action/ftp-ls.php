@@ -78,5 +78,5 @@ function runAction($config)
         ]);
         $returnCode = 500;
     }
-    http_response_code($returnCode);
+    //http_response_code($returnCode);
 }

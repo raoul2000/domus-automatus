@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .breadcrumbs {
+            list-style: none;
+            display: flex;
+            gap: 0.2em;
+            padding:0;
+        }
+        .breadcrumbs li a{
+            text-decoration: none;
+        }
+        .breadcrumbs li a:hover{
+            text-decoration: underline;
+        }
+        .breadcrumbs li:not(:last-child)::after {
+            content: " /";
+        }
+    </style>
+</head>
+<body>
+    <h1>Explorer</h1>
+    <hr/>
+    <div id="main">
+        <div>
+            <ul class="breadcrumbs">
+                <li><a href="">Home</a></li>
+                <li><a href="">litem 1</a></li>
+                <li><b>item 2</b></li>
+            </ul>
+        </div>
+        <p>sdfgsdfg</p>
+    </div>
+</body>
+</html>
