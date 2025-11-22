@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript" src="explorer.js"></script>
+    <style>
+        .breadcrumbs {
+            list-style: none;
+            display: flex;
+            gap: 0.2em;
+            padding:0;
+        }
+        .breadcrumbs li a{
+            text-decoration: none;
+        }
+        .breadcrumbs li a:hover{
+            text-decoration: underline;
+        }
+        .breadcrumbs li:not(:last-child)::after {
+            content: " /";
+        }
+    </style>    
 </head>
 <body>
     <h1>Explorer</h1>
