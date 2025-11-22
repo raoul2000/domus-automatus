@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +11,38 @@
             list-style: none;
             display: flex;
             gap: 0.2em;
-            padding:0;
+            padding: 0;
         }
-        .breadcrumbs li a{
+
+        .breadcrumbs li a {
             text-decoration: none;
         }
-        .breadcrumbs li a:hover{
+
+        .breadcrumbs li a:hover {
             text-decoration: underline;
         }
+
         .breadcrumbs li:not(:last-child)::after {
             content: " /";
         }
-    </style>    
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .file:hover {
+            cursor: pointer;
+            background-color: rgb(255, 249, 133);
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Explorer</h1>
-    <hr/>
+    <h1>Explorer<small id="loading">loading ...</small></h1>
+    <hr />
     <div id="main">
         <p>sdfgsdfg</p>
     </div>
 </body>
+
 </html>

@@ -1,39 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        .breadcrumbs {
-            list-style: none;
-            display: flex;
-            gap: 0.2em;
-            padding:0;
-        }
-        .breadcrumbs li a{
-            text-decoration: none;
-        }
-        .breadcrumbs li a:hover{
-            text-decoration: underline;
-        }
-        .breadcrumbs li:not(:last-child)::after {
-            content: " /";
-        }
+      .breadcrumbs {
+        list-style: none;
+        display: flex;
+        gap: 0.2em;
+        padding: 0;
+      }
+      .breadcrumbs li a {
+        text-decoration: none;
+      }
+      .breadcrumbs li a:hover {
+        text-decoration: underline;
+      }
+      .breadcrumbs li:not(:last-child)::after {
+        content: " /";
+      }
+      #loading {
+        margin-left: 0.5em;
+        color: grey;
+      }
+      .file:hover {
+        cursor: pointer;
+        background-color: rgb(255, 249, 133);
+      }
     </style>
-</head>
-<body>
-    <h1>Explorer</h1>
-    <hr/>
+  </head>
+  <body>
+    <h1>Explorer<small id="loading">loading ...</small></h1>
+    <hr />
     <div id="main">
-        <div>
-            <ul class="breadcrumbs">
-                <li><a href="">Home</a></li>
-                <li><a href="">litem 1</a></li>
-                <li><b>item 2</b></li>
-            </ul>
-        </div>
-        <p>sdfgsdfg</p>
+      <ul class="breadcrumbs">
+        <li><a href="" data-is-dir="true" data-path="">Home</a></li>
+        <li><a href="" data-is-dir="true" data-path="cam1">cam1</a></li>
+        <li><a href="" data-is-dir="true" data-path="cam1/2025">2025</a></li>
+        <li><a href="" data-is-dir="true" data-path="cam1/2025/11">11</a></li>
+        <li>21</li>
+      </ul>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121124817.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121124817.mp4"
+      >
+        📁 camera 1_00_20251121124817.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121124818.jpg"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121124818.jpg"
+      >
+        📁 camera 1_00_20251121124818.jpg
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121124840.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121124840.mp4"
+      >
+        📁 camera 1_00_20251121124840.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121125336.jpg"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121125336.jpg"
+      >
+        📁 camera 1_00_20251121125336.jpg
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121125336.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121125336.mp4"
+      >
+        📁 camera 1_00_20251121125336.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121130714.jpg"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121130714.jpg"
+      >
+        📁 camera 1_00_20251121130714.jpg
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121130714.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121130714.mp4"
+      >
+        📁 camera 1_00_20251121130714.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121134920.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121134920.mp4"
+      >
+        📁 camera 1_00_20251121134920.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121134942.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121134942.mp4"
+      >
+        📁 camera 1_00_20251121134942.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121135021.jpg"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121135021.jpg"
+      >
+        📁 camera 1_00_20251121135021.jpg
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121135021.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121135021.mp4"
+      >
+        📁 camera 1_00_20251121135021.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121135044.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121135044.mp4"
+      >
+        📁 camera 1_00_20251121135044.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121142051.jpg"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121142051.jpg"
+      >
+        📁 camera 1_00_20251121142051.jpg
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121142051.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121142051.mp4"
+      >
+        📁 camera 1_00_20251121142051.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121142114.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121142114.mp4"
+      >
+        📁 camera 1_00_20251121142114.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121142128.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121142128.mp4"
+      >
+        📁 camera 1_00_20251121142128.mp4
+      </div>
+      <div
+        class="file"
+        data-path="cam1/2025/11/21/camera 1_00_20251121142150.mp4"
+        data-is-dir="false"
+        data-name="camera 1_00_20251121142150.mp4"
+      >
+        📁 camera 1_00_20251121142150.mp4
+      </div>
     </div>
-</body>
+  </body>
 </html>

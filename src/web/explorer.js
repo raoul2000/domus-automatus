@@ -15,10 +15,25 @@
         return { dirName: dir ?? "", dirContent: jsonResponse };
       });
 
+  let loading = false;
+  const loadingInProgress = (inProgress) => {
+    loading = inProgress;
+    const loadingElement = document.getElementById("loading");
+    if (!loadingElement) {
+      return;
+    } else if (inProgress) {
+      loadingElement.classList.remove("hidden");
+    } else {
+      loadingElement.classList.add("hidden");
+    }
+    return Promise.resolve(true);
+  };
+
   const createSingleCrumb = (title, path, isLast) => {
     const result = document.createElement("li");
     if (!isLast) {
       const link = document.createElement("a");
+      link.setAttribute("href", "");
       link.dataset.isDir = true;
       link.dataset.path = path;
       link.textContent = title;
@@ -35,6 +50,7 @@
 
     const liHome = document.createElement("li");
     const linkHome = document.createElement("a");
+    linkHome.setAttribute("href", "");
     linkHome.dataset.isDir = true;
     linkHome.dataset.path = "";
     linkHome.textContent = "Home";
@@ -67,24 +83,40 @@
     document.getElementById("main").replaceChildren(
       renderBreadCrumb(dirName),
       ...Object.entries(dirContent).map(([fileKey, fileProps]) => {
+        const isDir = fileProps.type === "directory";
         const div = document.createElement("div");
-        div.classList.add(fileProps.type === "directory" ? "dir" : "file");
-        div.textContent = fileProps.name ?? "home";
+        div.classList.add(isDir ? "dir" : "file");
+        div.textContent = "📁 " + fileProps.name ?? "home";
 
         div.dataset.path = fileKey.match(/.*#[^\/]*\/(.*)/)[1];
-        div.dataset.isDir = fileProps.type === "directory";
+        div.dataset.isDir = isDir;
         div.dataset.name = fileProps.name;
         return div;
       })
     );
 
+  const updateMainView = (pathToBrowse) =>
+    loadingInProgress(true)
+      .then(() => ls(pathToBrowse))
+      .then(renderDir)
+      .finally(() => loadingInProgress(false));
+
   document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("main").addEventListener("click", (ev) => {
-      if (ev.target.dataset.isDir) {
-        ls(ev.target.dataset.path).then(renderDir);
+      ev.preventDefault();
+      ev.stopPropagation();
+      if (!loading) {
+        if (ev.target.dataset.isDir === "true") {
+          updateMainView(ev.target.dataset.path);
+        } else if (ev.target.dataset.isDir === "false") {
+          const fileUrl = `http://manu34.free.fr/domoticus/${ev.target.dataset.path}`;
+          console.log(`opening url ${fileUrl}`);
+          window.open(fileUrl);
+        }
       }
     });
+
     // initial render
-    ls().then(renderDir);
+    updateMainView();
   });
 })();
