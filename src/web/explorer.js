@@ -117,6 +117,6 @@
     });
 
     // initial render
-    updateMainView();
+    updateMainView("cam1/2025/11/22");
   });
 })();
