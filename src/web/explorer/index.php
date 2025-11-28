@@ -7,6 +7,15 @@
     <title>Document</title>
     <script type="text/javascript" src="explorer.js"></script>
     <style>
+        body {
+            font-family: sans-serif;
+            margin: 1em;
+            padding: 1em;
+        }
+        h1 {
+            border-bottom: 1px solid #cbcbcb;
+            padding-bottom: 0.5em;
+        }
         .breadcrumbs {
             list-style: none;
             display: flex;
@@ -26,11 +35,16 @@
             content: " /";
         }
 
+        #loading {
+            padding-left: 0.5em;
+            color: gray;
+        }
         .hidden {
             visibility: hidden;
         }
 
-        .file:hover {
+        .file:hover,
+        .dir:hover {
             cursor: pointer;
             background-color: rgb(255, 249, 133);
         }
@@ -39,9 +53,8 @@
 
 <body>
     <h1>Explorer<small id="loading">loading ...</small></h1>
-    <hr />
     <div id="main">
-        <p>sdfgsdfg</p>
+        <p>loading...</p>
     </div>
 </body>
 

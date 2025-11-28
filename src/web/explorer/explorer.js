@@ -2,7 +2,7 @@
   console.log("explorer loading ...");
 
   const ls = (dir) =>
-    fetch(`/index.php?action=ls&dir=${dir ?? ""}`, {
+    fetch(`../api/index.php?action=ls&dir=${dir ?? ""}`, {
       headers: {
         "x-authKey": "abcd",
       },
@@ -84,10 +84,27 @@
       renderBreadCrumb(dirName),
       ...Object.entries(dirContent).map(([fileKey, fileProps]) => {
         const isDir = fileProps.type === "directory";
+
+        let icon = "";
+        if (isDir) {
+          icon = "📁";
+        } else {
+          const groups = fileProps.name.match(/.*\.([^\.]*)/);
+          const ext = groups ? groups[1] : "";
+          switch (ext) {
+            case "mp4":
+              icon = "🎥";
+              break;
+            case "jpg":
+              icon = "🖼️";
+              break;
+            default:
+              icon = "📄";
+          }
+        }
         const div = document.createElement("div");
         div.classList.add(isDir ? "dir" : "file");
-        div.textContent = "📁 " + fileProps.name ?? "home";
-
+        div.textContent = `${icon} ` + fileProps.name ?? "home";
         div.dataset.path = fileKey.match(/.*#[^\/]*\/(.*)/)[1];
         div.dataset.isDir = isDir;
         div.dataset.name = fileProps.name;
@@ -117,6 +134,6 @@
     });
 
     // initial render
-    updateMainView("cam1/2025/11/22");
+    updateMainView();
   });
 })();
