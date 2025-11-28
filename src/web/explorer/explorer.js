@@ -4,7 +4,7 @@
   const ls = (dir) =>
     fetch(`../api/index.php?action=ls&dir=${dir ?? ""}`, {
       headers: {
-        "x-authKey": "abcd",
+        "x-authKey": key,
       },
     })
       .then((response) => response.json())

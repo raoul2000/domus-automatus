@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php
+if (getenv('DEV')) {
+    require("../../config/web.dev.php"); // dev config must not be committed (it contains secrets)
+} else {
+    require("../../config/web.php");
+}
+date_default_timezone_set($config['timezone']);
+
+$authKey =  $config['authorizationKey'];
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,6 +50,9 @@
             background-color: rgb(255, 249, 133);
         }
     </style>
+    <script>
+        const key = "<?=  $authKey ?>";
+    </script>
 </head>
 
 <body>
