@@ -1,8 +1,15 @@
 <?php
 
 $config = [
+    // API Auth key 
     "authorizationKey" => 'abcd',
-    "param1" => true,
+
+    // Use credentials to acces Web apps
+    'admin' => [
+        'username' => 'admin',
+        'password' => '123456'
+    ],
+    
     "timezone" => 'Europe/Paris',
     "logDir" => __DIR__ . '/../log',  // will be created if needed
 

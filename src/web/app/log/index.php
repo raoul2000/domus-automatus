@@ -1,9 +1,9 @@
 
 <?php
 if (getenv('DEV')) {
-    require("../../config/web.dev.php"); // dev config must not be committed (it contains secrets)
+    require("../../../config/web.dev.php"); // dev config must not be committed (it contains secrets)
 } else {
-    require("../../config/web.php");
+    require("../../../config/web.php");
 }
 date_default_timezone_set($config['timezone']);
 ?>

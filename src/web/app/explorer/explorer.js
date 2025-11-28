@@ -2,7 +2,7 @@
   console.log("explorer loading ...");
 
   const ls = (dir) =>
-    fetch(`../api/index.php?action=ls&dir=${dir ?? ""}`, {
+    fetch(`../../api/index.php?action=ls&dir=${dir ?? ""}`, {
       headers: {
         "x-authKey": key,
       },
