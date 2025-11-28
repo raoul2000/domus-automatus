@@ -66,17 +66,20 @@ function runAction($config)
             $dirToScan = $rootDir . '/' . $dirParam;
         }
 
+        Logger::info("ftp-ls : scanDir ". $dirToScan);
+
         $ftp = new \FtpClient\FtpClient();
         $ftp->connect($host);
         $ftp->login($username, $password);
 
         echo json_encode($ftp->scanDir($dirToScan));
     } catch (\Throwable $th) {
+        http_response_code(500);
         echo json_encode([
             'error' => 'failed to list folder',
             'cause' => $th->getMessage()
         ]);
-        $returnCode = 500;
+        Logger::error("ftp-ls: operation failed : " . $th->getMessage());
+        
     }
-    //http_response_code($returnCode);
 }

@@ -35,6 +35,6 @@ function runAction($config)
         $healtCheck['ftpConnection'] = false;
         $healtCheck['ftpConnectionError'] = $th->getMessage();
     }
-    echo json_encode($healtCheck);
     http_response_code(200);
+    echo json_encode($healtCheck);
 }

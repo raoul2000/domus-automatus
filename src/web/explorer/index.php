@@ -5,17 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="../global.css" rel="stylesheet">
     <script type="text/javascript" src="explorer.js"></script>
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 1em;
-            padding: 1em;
-        }
-        h1 {
-            border-bottom: 1px solid #cbcbcb;
-            padding-bottom: 0.5em;
-        }
         .breadcrumbs {
             list-style: none;
             display: flex;

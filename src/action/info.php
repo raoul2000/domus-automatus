@@ -21,6 +21,6 @@ function runAction($config)
 
     //echo file_get_contents("../../version.json");
     
-    echo file_get_contents(__DIR__ . "/../version.json");
     http_response_code(200);
+    echo file_get_contents(__DIR__ . "/../version.json");
 }

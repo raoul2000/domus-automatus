@@ -1,0 +1,9 @@
+body {
+  font-family: sans-serif;
+  margin: 1em;
+  padding: 1em;
+}
+h1 {
+  border-bottom: 1px solid #cbcbcb;
+  padding-bottom: 0.5em;
+}
