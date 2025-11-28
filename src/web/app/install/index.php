@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
     <h1>Installation</h1>
     <div id="main">
       <pre>
-
 <?php
 
   echo "loading config...\n";
@@ -31,7 +29,7 @@
   if( strlen($USERNAME) == 0 ||  strlen($PASSWORD) == 0 ) {
     echo "ERROR : missing user credentials\n";
   } else {
-    
+
     ///////////////////////////////////////////////////////////////////////////////
 
     $autPwdFilename= realpath('../../../config') . '/.htpasswd';
@@ -68,16 +66,12 @@
     if( unlink(__FILE__) === false){
       echo "ERROR : failed to delete file " . __FILE__. "\n";
     } else {
-      echo "deleting deploy folder\n";
+      echo "deleting install folder\n";
       rmdir(__DIR__);
     }
     echo "(weak) Protection enabled\n";
   }
-
-
-
 ?>
-
       </pre>
     </div>
 </body>
