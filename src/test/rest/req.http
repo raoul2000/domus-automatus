@@ -1,7 +1,7 @@
 @hostname = localhost
 @port = 8080
 @host = {{hostname}}:{{port}}
-@url = http://{{host}}
+@url = http://{{host}}/api
 @authKey = abcd
 
 

@@ -1,8 +1,8 @@
 <?php
 
-require_once("../lib/ftp-client/FtpClient.php");
-require_once("../lib/ftp-client/FtpException.php");
-require_once("../lib/ftp-client/FtpWrapper.php");
+require_once(__DIR__ . "/../lib/ftp-client/FtpClient.php");
+require_once(__DIR__ . "/../lib/ftp-client/FtpException.php");
+require_once(__DIR__ . "/../lib/ftp-client/FtpWrapper.php");
 
 /*
 

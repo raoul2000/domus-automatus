@@ -19,6 +19,8 @@ function runAction($config)
     echo json_encode($jsonData);
      */
 
-    echo file_get_contents("../version.json");
+    //echo file_get_contents("../../version.json");
+    
+    echo file_get_contents(__DIR__ . "/../version.json");
     http_response_code(200);
 }

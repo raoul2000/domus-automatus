@@ -22,14 +22,14 @@ function checkAuthenticationKey($config) {
 // main ////////////////////////////////////////////////////////////////////////////////////////////
 
 if (getenv('DEV')) {
-    require("../config/web.dev.php"); // dev config must not be committed (it contains secrets)
+    require("../../config/web.dev.php"); // dev config must not be committed (it contains secrets)
 } else {
-    require("../config/web.php");
+    require("../../config/web.php");
 }
 date_default_timezone_set($config['timezone']);
 
 // setup log 
-require('../lib/Logger.php');
+require('../../lib/Logger.php');
 Logger::$log_dir = $config['logDir'];
 
 
@@ -40,24 +40,24 @@ $action = array_key_exists('action', $_REQUEST) ? $_REQUEST['action'] : "";
 switch ($action) {
     case 'ping':
         checkAuthenticationKey($config);
-        require('../action/ping.php');
+        require('../../action/ping.php');
         break;
     case 'send-sms':
         checkAuthenticationKey($config);
-        require('../action/send-sms.php');
+        require('../../action/send-sms.php');
         break;
     case 'health-check':
         checkAuthenticationKey($config);
-        require('../action/health-check.php');
+        require('../../action/health-check.php');
         break;
     case 'log':
-        require('../action/log.php');
+        require('../../action/log.php');
         break;
     case 'info':
-        require('../action/info.php');
+        require('../../action/info.php');
         break;
     case 'ls':
-        require('../action/ftp-ls.php');
+        require('../../action/ftp-ls.php');
         break;
     default:
         Logger::error("missing or invalid action", $_SERVER);

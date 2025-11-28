@@ -13,7 +13,7 @@ function runAction($config)
         array_key_exists('destinations', $config['action']['send-sms']) &&
         is_array($config['action']['send-sms']['destinations'])
     ) {
-        require("../lib/FreemobileNotificationSender.php");
+        require(__DIR__ . "/../lib/FreemobileNotificationSender.php");
 
         // load SMS configuration
         $destinations = $config['action']['send-sms']['destinations'];
