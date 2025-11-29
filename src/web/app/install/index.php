@@ -63,12 +63,7 @@
     echo "file uopdated $htaccessFilename\n";
 
     echo "cleaning...\n";
-    if( unlink(__FILE__) === false){
-      echo "ERROR : failed to delete file " . __FILE__. "\n";
-    } else {
-      echo "deleting install folder\n";
-      rmdir(__DIR__);
-    }
+    rename(__FILE__, __FILE__ . "_" .  date('Ymd_His'));
     echo "(weak) Protection enabled\n";
   }
 ?>
