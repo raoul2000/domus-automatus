@@ -2,3 +2,4 @@ src/config/web.dev.php
 src/log/*.*
 .clj-kondo/
 .lsp/
+recycle/
