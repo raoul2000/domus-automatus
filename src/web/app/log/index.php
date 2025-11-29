@@ -22,6 +22,10 @@ date_default_timezone_set($config['timezone']);
             .nav-back:hover {
                 text-decoration: underline;
             }
+            pre {
+                word-wrap: break-word;
+                white-space: pre-wrap;
+            }
         </style>
     </head>
     <body>
