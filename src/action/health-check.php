@@ -32,6 +32,7 @@ function runAction($config)
         $ftp->scanDir($config['ftp']['rootDir']);
 
     } catch (\Throwable $th) {
+        Logger::error("health-check: " . $th->getMessage());
         $healtCheck['ftpConnection'] = false;
         $healtCheck['ftpConnectionError'] = $th->getMessage();
     }
