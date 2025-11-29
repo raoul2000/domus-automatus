@@ -12,6 +12,7 @@
 namespace FtpClient;
 
 use \Countable;
+use Logger;
 
 /**
  * The FTP and SSL-FTP client for PHP.
@@ -74,7 +75,7 @@ class FtpClient implements Countable
         if (!extension_loaded('ftp')) {
             throw new FtpException('FTP extension is not loaded!');
         }
-
+ Logger::info(__LINE__);
         if ($connection) {
             $this->conn = $connection;
         }
@@ -742,10 +743,12 @@ class FtpClient implements Countable
      */
     public function rawlist($directory = '.', $recursive = false)
     {
+        Logger::info("1");
         if (!$this->isDir($directory)) {
             throw new FtpException('"'.$directory.'" is not a directory.');
         }
 
+        Logger::info(__LINE__);
         if (strpos($directory, " ") > 0) {
             $ftproot = $this->ftp->pwd();
             $this->ftp->chdir($directory);

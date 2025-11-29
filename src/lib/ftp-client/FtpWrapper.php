@@ -10,7 +10,7 @@
  * @copyright Nicolas Tallefourtane http://nicolab.net
  */
 namespace FtpClient;
-
+use Logger;
 /**
  * Wrap the PHP FTP functions
  *
@@ -80,10 +80,13 @@ class FtpWrapper
     public function __call($function, array $arguments)
     {
         $function = 'ftp_' . $function;
-
+        Logger::info("2 : " . __LINE__ . ": function = " .$function);
         if (function_exists($function)) {
             array_unshift($arguments, $this->conn);
-            return @call_user_func_array($function, $arguments);
+            Logger::info("2 : " . __LINE__ . " arguments : [" . var_export($arguments, true) ."]");
+            $result = @call_user_func_array($function, $arguments);
+            Logger::info("2 : " . __LINE__ . " result : " . var_export($result, true));
+             return $result;
         }
 
         throw new FtpException("{$function} is not a valid FTP function");
