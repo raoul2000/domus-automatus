@@ -9,14 +9,16 @@ date_default_timezone_set($config['timezone']);
 $authKey =  $config['authorizationKey'];
 ?><!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Explorer</title>
     <link href="../global.css" rel="stylesheet">
     <script type="text/javascript" src="explorer.js"></script>
     <style>
+        body {
+            font-size: 1.2em;
+        }
         .breadcrumbs {
             list-style: none;
             display: flex;
@@ -38,7 +40,7 @@ $authKey =  $config['authorizationKey'];
 
         #loading {
             padding-left: 0.5em;
-            color: gray;
+            color: #b0b0b0ff;
         }
         .hidden {
             visibility: hidden;
@@ -48,6 +50,17 @@ $authKey =  $config['authorizationKey'];
         .dir:hover {
             cursor: pointer;
             background-color: rgb(255, 249, 133);
+        }
+        .row {
+            display:flex;
+            gap: 1em;
+            align-items: flex-end;            
+        }
+        .time {
+            color: #5f5f5f;
+        }
+        .filename {
+            font-weight: bold;
         }
     </style>
     <script>

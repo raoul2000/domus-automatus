@@ -45,6 +45,9 @@
   };
 
   const renderBreadCrumb = (dirName) => {
+    if(dirName.startsWith('/')) {
+      dirName = dirName.substr(1);
+    }
     const ul = document.createElement("ul");
     ul.classList.add("breadcrumbs");
 
@@ -79,38 +82,61 @@
     return ul;
   };
 
-  const renderDir = ({ dirName, dirContent }) =>
-    document.getElementById("main").replaceChildren(
-      renderBreadCrumb(dirName),
-      ...Object.entries(dirContent).map(([fileKey, fileProps]) => {
-        const isDir = fileProps.type === "directory";
+  const renderDir = ({ dirName, dirContent }) => {
+    console.log(dirName, dirContent);
+    if (dirContent.error) {
+      console.error(dirContent.error);
+    } else {
+      document.getElementById("main").replaceChildren(
+        renderBreadCrumb(dirName),
+        ...dirContent.content.map((fileProps) => {
+          const isDir = fileProps.type === "directory";
 
-        let icon = "";
-        if (isDir) {
-          icon = "📁";
-        } else {
-          const groups = fileProps.name.match(/.*\.([^\.]*)/);
-          const ext = groups ? groups[1] : "";
-          switch (ext) {
-            case "mp4":
-              icon = "🎥";
-              break;
-            case "jpg":
-              icon = "🖼️";
-              break;
-            default:
-              icon = "📄";
+          let icon = "";
+          if (isDir) {
+            icon = "📁";
+          } else {
+            const groups = fileProps.name.match(/.*\.([^\.]*)/);
+            const ext = groups ? groups[1] : "";
+            switch (ext) {
+              case "mp4":
+                icon = "🎥";
+                break;
+              case "jpg":
+                icon = "🖼️";
+                break;
+              default:
+                icon = "📄";
+            }
           }
-        }
-        const div = document.createElement("div");
-        div.classList.add(isDir ? "dir" : "file");
-        div.textContent = `${icon} ` + fileProps.name ?? "home";
-        div.dataset.path = fileKey.match(/.*#[^\/]*\/(.*)/)[1];
-        div.dataset.isDir = isDir;
-        div.dataset.name = fileProps.name;
-        return div;
-      })
-    );
+          const div = document.createElement("div");
+          div.classList.add("row", isDir ? "dir" : "file");
+          
+          div.dataset.path = `${dirName}/${fileProps.name}`
+          div.dataset.isDir = isDir;
+          div.dataset.name = fileProps.name;
+
+          const iconCol = document.createElement('div');
+          iconCol.textContent = icon;
+          iconCol.classList.add('icon');
+
+          const timeCol = document.createElement('div');
+          timeCol.classList.add('time');
+          timeCol.textContent = fileProps.time;
+
+          const filenameCol = document.createElement('span');
+          filenameCol.classList.add('filename');
+          filenameCol.textContent = fileProps.name;
+          div.replaceChildren(
+            iconCol,
+            timeCol,
+            filenameCol
+          );
+          return div;
+        })
+      );
+    }
+  };
 
   const updateMainView = (pathToBrowse) =>
     loadingInProgress(true)
@@ -123,10 +149,11 @@
       ev.preventDefault();
       ev.stopPropagation();
       if (!loading) {
-        if (ev.target.dataset.isDir === "true") {
-          updateMainView(ev.target.dataset.path);
-        } else if (ev.target.dataset.isDir === "false") {
-          const fileUrl = `http://manu34.free.fr/domoticus/${ev.target.dataset.path}`;
+        const linkElement = ev.target.closest('[data-path]');
+        if (linkElement.dataset.isDir === "true") {
+          updateMainView(linkElement.dataset.path);
+        } else if (linkElement.dataset.isDir === "false") {
+          const fileUrl = `http://manu34.free.fr/domoticus/${linkElement.dataset.path}`;
           console.log(`opening url ${fileUrl}`);
           window.open(fileUrl);
         }

@@ -62,7 +62,7 @@ x-authKey: {{authKey}}
 
 ### FTP: ls - folder exists
 
-GET {{url}}/index.php?action=ls&dir=cam1/2025/11/21/
+GET {{url}}/index.php?action=ls&dir=cam1/2025/11/29
 x-authKey: {{authKey}}
 
 ### FTP: ls - folder Not found
