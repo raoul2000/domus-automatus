@@ -1,6 +1,28 @@
 (function () {
   console.log("explorer loading ...");
 
+  const formatBytes = (bytes, decimals = 2) => {
+    if (!+bytes) return "0 Bytes";
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = [
+      "Bytes",
+      "KiB",
+      "MiB",
+      "GiB",
+      "TiB",
+      "PiB",
+      "EiB",
+      "ZiB",
+      "YiB",
+    ];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  };
+
   const ls = (dir) =>
     fetch(`../../api/index.php?action=ls&dir=${dir ?? ""}`, {
       headers: {
@@ -45,7 +67,7 @@
   };
 
   const renderBreadCrumb = (dirName) => {
-    if(dirName.startsWith('/')) {
+    if (dirName.startsWith("/")) {
       dirName = dirName.substr(1);
     }
     const ul = document.createElement("ul");
@@ -56,7 +78,7 @@
     linkHome.setAttribute("href", "");
     linkHome.dataset.isDir = true;
     linkHome.dataset.path = "";
-    linkHome.textContent = "Home";
+    linkHome.textContent = "Root";
 
     liHome.appendChild(linkHome);
 
@@ -70,11 +92,11 @@
             `${acc.dirNames.join("/")}${
               acc.dirNames.length > 0 ? "/" : ""
             }${curDirname}`,
-            curIndex === arr.length - 1
+            curIndex === arr.length - 1,
           ),
         ],
       }),
-      { dirNames: [], elements: [] }
+      { dirNames: [], elements: [] },
     );
 
     ul.append(liHome, ...liElements.elements);
@@ -111,29 +133,30 @@
           }
           const div = document.createElement("div");
           div.classList.add("row", isDir ? "dir" : "file");
-          
-          div.dataset.path = `${dirName}/${fileProps.name}`
+
+          div.dataset.path = `${dirName}/${fileProps.name}`;
           div.dataset.isDir = isDir;
           div.dataset.name = fileProps.name;
+          div.dataset.size = fileProps.size;
 
-          const iconCol = document.createElement('div');
+          const iconCol = document.createElement("div");
           iconCol.textContent = icon;
-          iconCol.classList.add('icon');
+          iconCol.classList.add("icon");
 
-          const timeCol = document.createElement('div');
-          timeCol.classList.add('time');
+          const timeCol = document.createElement("div");
+          timeCol.classList.add("time");
           timeCol.textContent = fileProps.time;
 
-          const filenameCol = document.createElement('span');
-          filenameCol.classList.add('filename');
+          const filenameCol = document.createElement("span");
+          filenameCol.classList.add("filename");
           filenameCol.textContent = fileProps.name;
-          div.replaceChildren(
-            iconCol,
-            timeCol,
-            filenameCol
-          );
+
+          const fileSize = document.createElement("span");
+          fileSize.classList.add("filesize");
+          fileSize.textContent = formatBytes(fileProps.size);
+          div.replaceChildren(iconCol, timeCol, filenameCol, fileSize);
           return div;
-        })
+        }),
       );
     }
   };
@@ -149,7 +172,7 @@
       ev.preventDefault();
       ev.stopPropagation();
       if (!loading) {
-        const linkElement = ev.target.closest('[data-path]');
+        const linkElement = ev.target.closest("[data-path]");
         if (linkElement.dataset.isDir === "true") {
           updateMainView(linkElement.dataset.path);
         } else if (linkElement.dataset.isDir === "false") {

@@ -54,13 +54,17 @@ $authKey =  $config['authorizationKey'];
         .row {
             display:flex;
             gap: 1em;
-            align-items: flex-end;            
+            align-items: flex-end; 
+            padding:0.3em;
         }
         .time {
             color: #5f5f5f;
         }
         .filename {
             font-weight: bold;
+        }
+        .filesize {
+            font-size: 0.8em;
         }
     </style>
     <script>
@@ -69,6 +73,8 @@ $authKey =  $config['authorizationKey'];
 </head>
 
 <body>
+    <div><a href="/app">Home</a> | <a href="/app/log/index.php">Logs</a></div>
+
     <h1>Explorer<small id="loading">loading ...</small></h1>
     <div id="main">
         <p>loading...</p>
